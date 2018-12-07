@@ -1,31 +1,22 @@
 package insertionSort;
 
 import java.util.Arrays;
-import java.util.stream.Stream;
 
 class InsertionSorter {
 
-    private int[] arr;
-
-    InsertionSorter(int[] arr) {
-        this.arr = arr;
-    }
-
-    void sort() {
+    void sort(int [] arr) {
         for (int i = 1; i < arr.length; i++) {
-            int j = 0;
-            while (j < i) {
-                if (arr[j] > arr[i]) {
-                    int tmp = arr[i];
-                    arr[i] = arr[j];
-                    arr[j] = tmp;
-                }
-                j++;
+            int k = arr[i];
+            int j = i - 1;
+            while (j >= 0 && arr[j] > k) {
+                arr[j + 1] = arr[j];
+                j = j - 1;
             }
+            arr[j + 1] = k;
         }
     }
 
-    void printArray() {
-        Stream.of(arr).forEach(e -> System.out.print(" " + Arrays.toString(e)));
+    void printArray(int [] arr) {
+        Arrays.stream(arr).forEach(e -> System.out.print(" " + e));
     }
 }
